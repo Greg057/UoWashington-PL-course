@@ -58,3 +58,14 @@ fun get_nth (strings : string list, n : int) =
     if n = 1
     then hd strings
     else get_nth (tl strings, n - 1)
+
+fun date_to_string (date : (int*int*int)) =
+    let
+        val months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] 
+        fun get_month (months : string list, n : int) =
+            if n = 1
+            then hd months
+            else get_nth (tl months, n - 1)
+    in
+        (get_month (months, #2 date)) ^ " " ^ (Int.toString(#3 date)) ^ ", " ^ (Int.toString(#1 date))
+    end
