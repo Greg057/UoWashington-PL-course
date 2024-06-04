@@ -109,3 +109,5 @@ fun remove_duplicates (months : int list) =
 fun number_in_months_challenge (dates : (int*int*int) list, months : int list) =
     number_in_months(dates, remove_duplicates(months))
     
+fun dates_in_months_challenge (dates : (int*int*int) list, months : int list) =
+    dates_in_months(dates, remove_duplicates(months))
