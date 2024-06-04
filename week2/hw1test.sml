@@ -68,3 +68,19 @@ val test13 = dates_in_months_challenge ([(2012,2,28),(2013,12,1),(2011,3,31),(20
 val test13a = dates_in_months_challenge ([(2012,0,28),(2013,12,1),(2011,0,31),(2011,0,28)],[2,3,4,4,4,4,4]) = []
 val test13b = dates_in_months_challenge ([(2013,12,1),(2012,2,28),(2013,12,1),(2011,3,31),(2011,4,28),(2013,12,1)],[2,3,4]) = [(2012,2,28),(2011,3,31),(2011,4,28)]
 val test13c = dates_in_months_challenge ([(2013,12,1),(2012,2,28),(2013,12,1),(2011,3,31),(2011,4,28),(2013,12,1)],[3,3,4,3,2,2,3,4]) = [(2012,2,28),(2011,3,31),(2011,4,28)]
+
+val test14 = reasonable_date(1,2,3) = true
+val test14a = reasonable_date(~5,2,23) = false
+val test14b = reasonable_date(0,2,23) = false
+val test14c = reasonable_date(2000,0,23) = false
+val test14d = reasonable_date(2000,13,23) = false
+val test14e = reasonable_date(2000,12,23) = true
+val test14f = reasonable_date(2000,2,29) = true
+val test14g = reasonable_date(2001,2,29) = false
+val test14h = reasonable_date(2001,2,28) = true
+val test14i = reasonable_date(2001,~2,28) = false
+val test14j = reasonable_date(2001,2,0) = false
+val test14k = reasonable_date(2001,2,~1) = false
+val test14l = reasonable_date(2024,7,5) = true
+val test14m = reasonable_date(2024,7,31) = true
+val test14n = reasonable_date(2024,6,31) = false

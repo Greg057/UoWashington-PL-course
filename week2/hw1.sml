@@ -111,3 +111,26 @@ fun number_in_months_challenge (dates : (int*int*int) list, months : int list) =
     
 fun dates_in_months_challenge (dates : (int*int*int) list, months : int list) =
     dates_in_months(dates, remove_duplicates(months))
+
+fun reasonable_date (date : (int * int * int)) = 
+    let
+        fun is_leap_year (year : int) = 
+            if (year mod 400 = 0) orelse ((year mod 4 = 0) andalso (year mod 100 <> 0)) 
+            then [0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31] 
+            else [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31] 
+
+        val months = is_leap_year(#1 date)
+
+        fun sum_days(months : int list, n : int)  =
+            if n = 0 orelse null months
+            then (#3 date)
+            else hd months + sum_days(tl months, n - 1)
+    in 
+        if (#1 date) <= 0
+        then false
+        else if (#2 date < 1) orelse (#2 date > 12)
+            then false
+            else number_before_reaching_sum (sum_days(months, (#2 date)), months) = (#2 date)
+    end
+
+    
