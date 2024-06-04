@@ -62,12 +62,8 @@ fun get_nth (strings : string list, n : int) =
 fun date_to_string (date : (int*int*int)) =
     let
         val months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] 
-        fun get_month (months : string list, n : int) =
-            if n = 1
-            then hd months
-            else get_nth (tl months, n - 1)
     in
-        (get_month (months, #2 date)) ^ " " ^ (Int.toString(#3 date)) ^ ", " ^ (Int.toString(#1 date))
+        (get_nth (months, #2 date)) ^ " " ^ (Int.toString(#3 date)) ^ ", " ^ (Int.toString(#1 date))
     end
 
 fun number_before_reaching_sum (sum : int, elements : int list) =
@@ -95,3 +91,21 @@ fun oldest (dates : (int*int*int) list) =
         else if is_older(hd dates, hd (tl dates))
             then oldest(hd dates :: tl (tl dates))
             else oldest(tl dates)
+
+fun remove_duplicates (months : int list) = 
+    if null months
+    then []
+    else
+        let fun remove_month (month : int, months : int list) = 
+            if null months
+            then [] 
+            else if month = hd months
+                then remove_month(month, tl months)
+                else hd months :: remove_month(month, tl months)
+        in hd months :: remove_duplicates(remove_month(hd months, months))
+        end
+
+
+fun number_in_months_challenge (dates : (int*int*int) list, months : int list) =
+    number_in_months(dates, remove_duplicates(months))
+    

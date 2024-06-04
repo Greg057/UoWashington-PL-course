@@ -57,3 +57,9 @@ val test11 = oldest([(2012,2,28),(2011,3,31),(2011,4,28)]) = SOME (2011,3,31)
 val test11a = oldest([]) = NONE
 val test11b = oldest([(2012,2,28),(2011,4,28)]) = SOME (2011,4,28)
 val test11c = oldest([(2011,3,31),(2012,2,28),(2011,4,28)]) = SOME (2011,3,31)
+
+val test12 = number_in_months_challenge ([(2012,2,28),(2013,12,1),(2011,3,31),(2011,4,28)],[2,3,4,2,3,4,4,3]) = 3
+val test12a = number_in_months_challenge ([(2012,1,28),(2013,12,1),(2011,1,31),(2011,5,28)],[2,3,4,2]) = 0
+val test12b = number_in_months_challenge ([],[2,3,4]) = 0
+val test12c = number_in_months_challenge ([(2012,1,28),(2013,12,1),(2011,1,31),(2011,5,28)],[]) = 0
+val test12d = number_in_months_challenge ([(2012,1,28),(2013,12,1),(2011,1,31),(2011,5,28)],[2,3,4]) = 0
