@@ -85,4 +85,13 @@ fun what_month (day : int) =
 fun month_range (day1 : int, day2 : int) = 
     if day1 > day2
     then []
-    else [what_month(day1)] @ month_range(day1 + 1, day2)
+    else what_month(day1) :: month_range(day1 + 1, day2)
+
+fun oldest (dates : (int*int*int) list) = 
+    if null dates 
+    then NONE
+    else if null (tl dates)
+        then SOME (hd dates)
+        else if is_older(hd dates, hd (tl dates))
+            then oldest(hd dates :: tl (tl dates))
+            else oldest(tl dates)
