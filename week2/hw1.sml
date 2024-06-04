@@ -33,4 +33,24 @@ fun number_in_months (dates : (int*int*int) list, months : int list) =
         else month_in_date(hd dates, months) + number_in_months (tl dates, months)
     end
 
+fun dates_in_month (dates : (int*int*int) list, month : int) =
+    if null dates
+    then []
+    else if (#2 (hd dates)) = month 
+    then (hd dates) :: dates_in_month(tl dates, month)
+    else dates_in_month(tl dates, month)
+
+fun dates_in_months (dates : (int*int*int) list, months : int list) =
+    let 
+        fun month_in_date(date : (int*int*int), months: int list) =
+            if null months
+            then []
+            else if (#2 date) = (hd months)
+                then [date]
+                else month_in_date(date, tl months)
+    in 
+        if (null dates) orelse (null months)
+        then []
+        else month_in_date(hd dates, months) @ dates_in_months (tl dates, months)
+    end
     
