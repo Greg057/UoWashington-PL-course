@@ -6,6 +6,9 @@ use "hw1.sml";
 
 
 val test1 = is_older ((1,2,3),(2,3,4)) = true
+val test1a = is_older ((2000, 9, 30),(2000, 9, 30)) = false
+val test1b = is_older ((2000, 9, 29),(2000, 9, 30)) = true
+val test1c = is_older ((2000, 9, 31),(2000, 9, 30)) = false
 
 val test2 = number_in_month ([(2012,2,28),(2013,12,1)],2) = 1
 
